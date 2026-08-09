@@ -93,7 +93,7 @@ hostname --fqdn
 Both nodes' `/etc/hosts` files were updated to include entries for both nodes:
 
 ```
-<Node 1 IP>    pve.bplus11.lan pve
+<192.168.177.12>    pve.bplus11.lan pve
 192.168.177.112   pve2.bplus11.lan pve2
 ```
 
@@ -101,13 +101,13 @@ Initial `pvecm add` failed with a hostname verification error. Resolved by fetch
 
 ```bash
 # On Node 1 — get the fingerprint the API is actually presenting
-echo | openssl s_client -connect <Node1_IP>:8006 2>/dev/null | openssl x509 -noout -fingerprint -sha256
+echo | openssl s_client -connect <192.168.177.12>:8006 2>/dev/null | openssl x509 -noout -fingerprint -sha256
 ```
 
 Then joined from the mini PC using the fingerprint:
 
 ```bash
-pvecm add <Node1_IP> --fingerprint <SHA256_fingerprint>
+pvecm add <192.168.177.12> --fingerprint <SHA256_fingerprint>
 ```
 
 ### Post-Join Verification
